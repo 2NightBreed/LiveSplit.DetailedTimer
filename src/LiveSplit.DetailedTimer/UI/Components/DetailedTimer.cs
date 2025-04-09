@@ -95,7 +95,7 @@ public class DetailedTimer : IComponent
         int lastSplitOffset = state.CurrentSplitIndex == state.Run.Count ? -1 : 0;
 
         float originalDrawSize = Math.Min(Settings.IconSize, width - 14);
-        Image icon = state.CurrentSplitIndex >= 0 ? state.Run[state.CurrentSplitIndex + lastSplitOffset].Icon : null;
+        Image icon = lastSplitOffset == -1 ? ConvertToGrayscale(state.Run[state.CurrentSplitIndex + lastSplitOffset].Icon) : state.CurrentSplitIndex >= 0 ? state.Run[state.CurrentSplitIndex].Icon : null;
         if (Settings.DisplayIcon && icon != null)
         {
             if (OldImage != icon)
@@ -449,6 +449,32 @@ public class DetailedTimer : IComponent
 
     public void Dispose()
     {
+    }
+
+    private static Image ConvertToGrayscale(Image image)
+    {
+        Image grayscaleImage = new Bitmap(image.Width, image.Height, image.PixelFormat);
+
+        var attributes = new ImageAttributes();
+        var grayscaleMatrix = new ColorMatrix([
+            [0.299f, 0.299f, 0.299f, 0, 0],
+            [0.587f, 0.587f, 0.587f, 0, 0],
+            [0.114f, 0.114f, 0.114f, 0, 0],
+            [0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 1],
+        ]);
+        attributes.SetColorMatrix(grayscaleMatrix);
+
+        using (var g = Graphics.FromImage(grayscaleImage))
+        {
+            g.DrawImage(image,
+                new Rectangle(0, 0, grayscaleImage.Width, grayscaleImage.Height),
+                0, 0, grayscaleImage.Width, grayscaleImage.Height,
+                GraphicsUnit.Pixel,
+                attributes);
+        }
+
+        return grayscaleImage;
     }
 
     public int GetSettingsHashCode()

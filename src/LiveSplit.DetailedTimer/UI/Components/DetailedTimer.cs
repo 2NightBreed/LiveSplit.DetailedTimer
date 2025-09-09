@@ -94,9 +94,11 @@ public class DetailedTimer : IComponent
         Timer.DrawBackground(g, InternalComponent.TimerColor, Settings.BackgroundColor, Settings.BackgroundColor2, width, height, Settings.BackgroundGradient);
 
         int lastSplitOffset = state.CurrentSplitIndex == state.Run.Count ? -1 : 0;
+        bool isLastSplitOfRun = lastSplitOffset == -1;
+        bool isRunActive = state.CurrentSplitIndex >= 0;
 
         float originalDrawSize = Math.Min(Settings.IconSize, width - 14);
-        Image icon = state.CurrentSplitIndex >= 0 ? state.Run[state.CurrentSplitIndex + lastSplitOffset].Icon : null;
+        Image icon = isLastSplitOfRun ? LiveSplitStateHelper.ConvertImageToGrayscale(state.Run[state.CurrentSplitIndex + lastSplitOffset].Icon) : isRunActive ? state.Run[state.CurrentSplitIndex].Icon : null;
         if (Settings.DisplayIcon && icon != null)
         {
             if (OldImage != icon)

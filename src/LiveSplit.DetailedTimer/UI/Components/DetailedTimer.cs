@@ -95,7 +95,7 @@ public class DetailedTimer : IComponent
         int lastSplitOffset = state.CurrentSplitIndex == state.Run.Count ? -1 : 0;
 
         float originalDrawSize = Math.Min(Settings.IconSize, width - 14);
-        Image icon = state.CurrentSplitIndex >= 0 ? state.Run[state.CurrentSplitIndex + lastSplitOffset].Icon : null;
+        Image icon = lastSplitOffset == -1 ? LiveSplitStateHelper.ConvertImageToGrayscale(state.Run[state.CurrentSplitIndex + lastSplitOffset].Icon) : state.CurrentSplitIndex >= 0 ? state.Run[state.CurrentSplitIndex].Icon : null;
         if (Settings.DisplayIcon && icon != null)
         {
             if (OldImage != icon)

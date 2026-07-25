@@ -96,7 +96,21 @@ public class DetailedTimer : IComponent
         int lastSplitOffset = state.CurrentSplitIndex == state.Run.Count ? -1 : 0;
 
         float originalDrawSize = Math.Min(Settings.IconSize, width - 14);
-        Image icon = state.CurrentSplitIndex >= 0 ? state.Run[state.CurrentSplitIndex + lastSplitOffset].Icon : null;
+
+        int splitIndex = state.CurrentSplitIndex < 1 ? 0 : state.CurrentSplitIndex + lastSplitOffset;
+        Image icon = null;
+        if (state.CurrentPhase != TimerPhase.NotRunning)
+        {
+            if (Settings.LastSubsplitIcons)
+            {
+                icon = state.Run[splitIndex].IsLastSubSplit ? state.Run[splitIndex].LastSubsplitIcon : state.Run[splitIndex].Icon;
+            }
+            else
+            {
+                icon = state.Run[splitIndex].Icon;
+            }
+        }
+
         if (Settings.DisplayIcon && icon != null)
         {
             if (OldImage != icon)

@@ -1,4 +1,4 @@
-namespace LiveSplit.UI.Components
+﻿namespace LiveSplit.UI.Components
 {
     partial class DetailedTimerSettings
     {
@@ -38,6 +38,7 @@ namespace LiveSplit.UI.Components
             this.chkDisplayIcon = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.trkIconSize = new System.Windows.Forms.TrackBar();
+            this.chkLastSubsplitIcons = new System.Windows.Forms.CheckBox();
             this.trkSegmentTimerRatio = new System.Windows.Forms.TrackBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -234,11 +235,12 @@ namespace LiveSplit.UI.Components
             // tableLayoutPanel10
             // 
             this.tableLayoutPanel10.ColumnCount = 2;
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.41109F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.58891F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.5F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.5F));
             this.tableLayoutPanel10.Controls.Add(this.chkDisplayIcon, 0, 0);
             this.tableLayoutPanel10.Controls.Add(this.label7, 0, 1);
             this.tableLayoutPanel10.Controls.Add(this.trkIconSize, 1, 1);
+            this.tableLayoutPanel10.Controls.Add(this.chkLastSubsplitIcons, 1, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
@@ -255,7 +257,7 @@ namespace LiveSplit.UI.Components
             this.chkDisplayIcon.Location = new System.Drawing.Point(7, 6);
             this.chkDisplayIcon.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkDisplayIcon.Name = "chkDisplayIcon";
-            this.chkDisplayIcon.Size = new System.Drawing.Size(139, 17);
+            this.chkDisplayIcon.Size = new System.Drawing.Size(87, 17);
             this.chkDisplayIcon.TabIndex = 0;
             this.chkDisplayIcon.Text = "Display Icon";
             this.chkDisplayIcon.UseVisualStyleBackColor = true;
@@ -267,21 +269,33 @@ namespace LiveSplit.UI.Components
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(3, 37);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(143, 13);
+            this.label7.Size = new System.Drawing.Size(91, 13);
             this.label7.TabIndex = 23;
             this.label7.Text = "Size:";
             // 
             // trkIconSize
             // 
             this.trkIconSize.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trkIconSize.Location = new System.Drawing.Point(152, 32);
+            this.trkIconSize.Location = new System.Drawing.Point(100, 32);
             this.trkIconSize.Maximum = 100;
             this.trkIconSize.Minimum = 20;
             this.trkIconSize.Name = "trkIconSize";
-            this.trkIconSize.Size = new System.Drawing.Size(278, 24);
+            this.trkIconSize.Size = new System.Drawing.Size(330, 24);
             this.trkIconSize.TabIndex = 1;
             this.trkIconSize.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkIconSize.Value = 20;
+            // 
+            // chkLastSubsplitIcons
+            // 
+            this.chkLastSubsplitIcons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkLastSubsplitIcons.AutoSize = true;
+            this.chkLastSubsplitIcons.Location = new System.Drawing.Point(104, 6);
+            this.chkLastSubsplitIcons.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkLastSubsplitIcons.Name = "chkLastSubsplitIcons";
+            this.chkLastSubsplitIcons.Size = new System.Drawing.Size(326, 17);
+            this.chkLastSubsplitIcons.TabIndex = 24;
+            this.chkLastSubsplitIcons.Text = "Display Last Subsplit Icons";
+            this.chkLastSubsplitIcons.UseVisualStyleBackColor = true;
             // 
             // trkSegmentTimerRatio
             // 
@@ -1250,5 +1264,6 @@ namespace LiveSplit.UI.Components
         private System.Windows.Forms.ComboBox cmbAccuracy;
         private System.Windows.Forms.ComboBox cmbSegmentAccuracy;
         private System.Windows.Forms.RadioButton rdoSegmentTimesMilliseconds;
+        private System.Windows.Forms.CheckBox chkLastSubsplitIcons;
     }
 }

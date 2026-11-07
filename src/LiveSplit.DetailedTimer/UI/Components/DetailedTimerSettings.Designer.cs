@@ -39,6 +39,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.trkIconSize = new System.Windows.Forms.TrackBar();
             this.chkLastSubsplitIcons = new System.Windows.Forms.CheckBox();
+            this.chkGrayscaleLastSplitIcon = new System.Windows.Forms.CheckBox();
             this.trkSegmentTimerRatio = new System.Windows.Forms.TrackBar();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -234,13 +235,15 @@
             // 
             // tableLayoutPanel10
             // 
-            this.tableLayoutPanel10.ColumnCount = 2;
+            this.tableLayoutPanel10.ColumnCount = 3;
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.5F));
-            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.5F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
             this.tableLayoutPanel10.Controls.Add(this.chkDisplayIcon, 0, 0);
             this.tableLayoutPanel10.Controls.Add(this.label7, 0, 1);
             this.tableLayoutPanel10.Controls.Add(this.trkIconSize, 1, 1);
             this.tableLayoutPanel10.Controls.Add(this.chkLastSubsplitIcons, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.chkGrayscaleLastSplitIcon, 2, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel10.Name = "tableLayoutPanel10";
@@ -275,6 +278,7 @@
             // 
             // trkIconSize
             // 
+            this.tableLayoutPanel10.SetColumnSpan(this.trkIconSize, 2);
             this.trkIconSize.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trkIconSize.Location = new System.Drawing.Point(100, 32);
             this.trkIconSize.Maximum = 100;
@@ -292,10 +296,22 @@
             this.chkLastSubsplitIcons.Location = new System.Drawing.Point(104, 6);
             this.chkLastSubsplitIcons.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkLastSubsplitIcons.Name = "chkLastSubsplitIcons";
-            this.chkLastSubsplitIcons.Size = new System.Drawing.Size(326, 17);
+            this.chkLastSubsplitIcons.Size = new System.Drawing.Size(163, 17);
             this.chkLastSubsplitIcons.TabIndex = 24;
             this.chkLastSubsplitIcons.Text = "Display Last Subsplit Icons";
             this.chkLastSubsplitIcons.UseVisualStyleBackColor = true;
+            // 
+            // chkGrayscaleLastSplitIcon
+            // 
+            this.chkGrayscaleLastSplitIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkGrayscaleLastSplitIcon.AutoSize = true;
+            this.chkGrayscaleLastSplitIcon.Location = new System.Drawing.Point(277, 6);
+            this.chkGrayscaleLastSplitIcon.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkGrayscaleLastSplitIcon.Name = "chkGrayscaleLastSplitIcon";
+            this.chkGrayscaleLastSplitIcon.Size = new System.Drawing.Size(153, 17);
+            this.chkGrayscaleLastSplitIcon.TabIndex = 25;
+            this.chkGrayscaleLastSplitIcon.Text = "Grayscale Last Split Icon";
+            this.chkGrayscaleLastSplitIcon.UseVisualStyleBackColor = true;
             // 
             // trkSegmentTimerRatio
             // 
@@ -1265,5 +1281,6 @@
         private System.Windows.Forms.ComboBox cmbSegmentAccuracy;
         private System.Windows.Forms.RadioButton rdoSegmentTimesMilliseconds;
         private System.Windows.Forms.CheckBox chkLastSubsplitIcons;
+        private System.Windows.Forms.CheckBox chkGrayscaleLastSplitIcon;
     }
 }

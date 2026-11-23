@@ -95,7 +95,13 @@ public class DetailedTimer : IComponent
 
         int lastSplitOffset = state.CurrentSplitIndex == state.Run.Count ? -1 : 0;
 
-        float originalDrawSize = Math.Min(Settings.IconSize, width - 14);
+        bool iconAboveHiddenComparisons = Settings.DisplayIconAboveComparisons && HideComparison1 && HideComparison2;
+        float topHeight = Settings.DisplayIconAboveComparisons && !iconAboveHiddenComparisons
+            ? height * (100f - Settings.SegmentTimerSizeRatio) / 100f
+            : height;
+        float originalDrawSize = Settings.DisplayIconAboveComparisons && !iconAboveHiddenComparisons
+            ? Math.Min(Math.Min(Settings.IconSize, width - 14), topHeight)
+            : Math.Min(Settings.IconSize, width - 14);
 
         int splitIndex = state.CurrentSplitIndex < 1 ? 0 : state.CurrentSplitIndex + lastSplitOffset;
         Image splitIcon = null;
@@ -138,7 +144,7 @@ public class DetailedTimer : IComponent
             g.DrawImage(
                 icon,
                 7 + ((originalDrawSize - drawWidth) / 2),
-                ((height - originalDrawSize) / 2.0f) + ((originalDrawSize - drawHeight) / 2),
+                ((topHeight - originalDrawSize) / 2.0f) + ((originalDrawSize - drawHeight) / 2),
                 drawWidth,
                 drawHeight);
 
@@ -171,11 +177,12 @@ public class DetailedTimer : IComponent
             float comparisonsY = height * ((100f - Settings.SegmentTimerSizeRatio) / 100f);
             float comparisonHeight = height * (Settings.SegmentTimerSizeRatio / 100f) / Math.Max(visibleComparisons, 1);
             float comparison2Y = HideComparison1 ? comparisonsY : comparisonsY + comparisonHeight;
+            int comparisonIconWidth = Settings.DisplayIconAboveComparisons ? 0 : IconWidth;
 
             LabelSegment.Font = labelsFont;
-            LabelSegment.X = 5 + IconWidth;
+            LabelSegment.X = 5 + comparisonIconWidth;
             LabelSegment.Y = comparisonsY;
-            LabelSegment.Width = width - SegmentTimer.ActualWidth - 5 - IconWidth;
+            LabelSegment.Width = width - SegmentTimer.ActualWidth - 5 - comparisonIconWidth;
             LabelSegment.Height = comparisonHeight;
             LabelSegment.HorizontalAlignment = StringAlignment.Near;
             LabelSegment.VerticalAlignment = StringAlignment.Center;
@@ -189,9 +196,9 @@ public class DetailedTimer : IComponent
             }
 
             LabelBest.Font = labelsFont;
-            LabelBest.X = 5 + IconWidth;
+            LabelBest.X = 5 + comparisonIconWidth;
             LabelBest.Y = comparison2Y;
-            LabelBest.Width = width - SegmentTimer.ActualWidth - 5 - IconWidth;
+            LabelBest.Width = width - SegmentTimer.ActualWidth - 5 - comparisonIconWidth;
             LabelBest.Height = comparisonHeight;
             LabelBest.HorizontalAlignment = StringAlignment.Near;
             LabelBest.VerticalAlignment = StringAlignment.Center;
@@ -209,9 +216,9 @@ public class DetailedTimer : IComponent
             if (!HideComparison1)
             {
                 SegmentTime.Font = timesFont;
-                SegmentTime.X = offset + IconWidth;
+                SegmentTime.X = offset + comparisonIconWidth;
                 SegmentTime.Y = comparisonsY;
-                SegmentTime.Width = width - SegmentTimer.ActualWidth - offset - IconWidth;
+                SegmentTime.Width = width - SegmentTimer.ActualWidth - offset - comparisonIconWidth;
                 SegmentTime.Height = comparisonHeight;
                 SegmentTime.HorizontalAlignment = StringAlignment.Near;
                 SegmentTime.VerticalAlignment = StringAlignment.Center;
@@ -226,9 +233,9 @@ public class DetailedTimer : IComponent
             if (!HideComparison2)
             {
                 BestSegmentTime.Font = timesFont;
-                BestSegmentTime.X = offset + IconWidth;
+                BestSegmentTime.X = offset + comparisonIconWidth;
                 BestSegmentTime.Y = comparison2Y;
-                BestSegmentTime.Width = width - SegmentTimer.ActualWidth - offset - IconWidth;
+                BestSegmentTime.Width = width - SegmentTimer.ActualWidth - offset - comparisonIconWidth;
                 BestSegmentTime.Height = comparisonHeight;
                 BestSegmentTime.HorizontalAlignment = StringAlignment.Near;
                 BestSegmentTime.VerticalAlignment = StringAlignment.Center;

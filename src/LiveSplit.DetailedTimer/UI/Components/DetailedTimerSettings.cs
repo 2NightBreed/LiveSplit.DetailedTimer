@@ -28,6 +28,7 @@ public partial class DetailedTimerSettings : UserControl
     public bool DisplayIcon { get; set; }
     public bool LastSubsplitIcons { get; set; }
     public bool GrayscaleLastSplitIcon { get; set; }
+    public bool DisplayIconAboveComparisons { get; set; }
 
     public float DecimalsSize { get; set; }
     public float SegmentTimerDecimalsSize { get; set; }
@@ -145,6 +146,7 @@ public partial class DetailedTimerSettings : UserControl
         DisplayIcon = false;
         LastSubsplitIcons = false;
         GrayscaleLastSplitIcon = false;
+        DisplayIconAboveComparisons = false;
 
         DecimalsSize = 35f;
         SegmentTimerDecimalsSize = 35f;
@@ -172,6 +174,7 @@ public partial class DetailedTimerSettings : UserControl
         chkLastSubsplitIcons.DataBindings.Add("Checked", this, "LastSubsplitIcons", false, DataSourceUpdateMode.OnPropertyChanged);
         chkGrayscaleLastSplitIcon.DataBindings.Add("Checked", this, "GrayscaleLastSplitIcon", false, DataSourceUpdateMode.OnPropertyChanged);
         trkIconSize.DataBindings.Add("Value", this, "IconSize", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkDisplayIconAboveComparisons.DataBindings.Add("Checked", this, "DisplayIconAboveComparisons", false, DataSourceUpdateMode.OnPropertyChanged);
         cmbGradientType.DataBindings.Add("SelectedItem", this, "BackgroundGradient", false, DataSourceUpdateMode.OnPropertyChanged);
         btnColor1.DataBindings.Add("BackColor", this, "BackgroundColor", false, DataSourceUpdateMode.OnPropertyChanged);
         btnColor2.DataBindings.Add("BackColor", this, "BackgroundColor2", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -222,7 +225,7 @@ public partial class DetailedTimerSettings : UserControl
 
     private void chkDisplayIcon_CheckedChanged(object sender, EventArgs e)
     {
-        label7.Enabled = trkIconSize.Enabled = chkLastSubsplitIcons.Enabled = chkGrayscaleLastSplitIcon.Enabled = chkDisplayIcon.Checked;
+        label7.Enabled = trkIconSize.Enabled = chkLastSubsplitIcons.Enabled = chkGrayscaleLastSplitIcon.Enabled = chkDisplayIconAboveComparisons.Enabled = chkDisplayIcon.Checked;
     }
 
     private void chkOverrideTimerColors_CheckedChanged(object sender, EventArgs e)
@@ -312,6 +315,7 @@ public partial class DetailedTimerSettings : UserControl
         LastSubsplitIcons = SettingsHelper.ParseBool(element["LastSubsplitIcons"], false);
         GrayscaleLastSplitIcon = SettingsHelper.ParseBool(element["GrayscaleLastSplitIcon"], false);
         IconSize = SettingsHelper.ParseFloat(element["IconSize"], 40f);
+        DisplayIconAboveComparisons = SettingsHelper.ParseBool(element["DisplayIconAboveComparisons"], false);
         ShowSplitName = SettingsHelper.ParseBool(element["ShowSplitName"], false);
         SplitNameColor = SettingsHelper.ParseColor(element["SplitNameColor"], Color.FromArgb(255, 255, 255));
         BackgroundColor = SettingsHelper.ParseColor(element["BackgroundColor"], Color.Transparent);
@@ -403,6 +407,7 @@ public partial class DetailedTimerSettings : UserControl
         SettingsHelper.CreateSetting(document, parent, "SegmentTimesFont", SegmentTimesFont) ^
         SettingsHelper.CreateSetting(document, parent, "SplitNameFont", SplitNameFont) ^
         SettingsHelper.CreateSetting(document, parent, "DisplayIcon", DisplayIcon) ^
+        SettingsHelper.CreateSetting(document, parent, "DisplayIconAboveComparisons", DisplayIconAboveComparisons) ^
         SettingsHelper.CreateSetting(document, parent, "LastSubsplitIcons", LastSubsplitIcons) ^
         SettingsHelper.CreateSetting(document, parent, "GrayscaleLastSplitIcon", GrayscaleLastSplitIcon) ^
         SettingsHelper.CreateSetting(document, parent, "IconSize", IconSize) ^
